@@ -10,6 +10,7 @@ import {
   Command,
   Copy,
   ExternalLink,
+  Images,
   Mail,
   MapPin,
   Menu,
@@ -19,7 +20,7 @@ import {
   Terminal,
   X,
 } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const navItems = [
   { label: "Projects", href: "#projects", number: "01" },
@@ -43,6 +44,23 @@ const projects = [
     repo: "https://github.com/Mateeoow/3D-Chess-Game",
     live: "https://3d-chess-game-alpha.vercel.app",
     visual: "chess",
+    images: [
+      {
+        src: "/projects/noble-3d-chess/01-starting-board.png",
+        alt: "Noble 3D Chess opening board with play modes and player panels",
+        caption: "Opening board and game controls",
+      },
+      {
+        src: "/projects/noble-3d-chess/02-active-match.png",
+        alt: "Noble 3D Chess match in progress with move history",
+        caption: "Active match with move history",
+      },
+      {
+        src: "/projects/noble-3d-chess/03-game-result.png",
+        alt: "Noble 3D Chess game-complete screen showing the winning player",
+        caption: "Game result and rematch options",
+      },
+    ],
   },
   {
     number: "02",
@@ -52,6 +70,23 @@ const projects = [
     tags: ["Flutter", "Dart", "Offline-first"],
     repo: "https://github.com/Mateeoow/intravel",
     visual: "travel",
+    images: [
+      {
+        src: "/projects/intravel/01-home.png",
+        alt: "InTravel mobile home screen showing destinations around Intramuros",
+        caption: "Destination discovery home screen",
+      },
+      {
+        src: "/projects/intravel/02-planner.png",
+        alt: "InTravel trip planner with a budget field and tourist-site list",
+        caption: "Budget-aware trip planning",
+      },
+      {
+        src: "/projects/intravel/03-place-details.png",
+        alt: "InTravel Fort Santiago details with hours, ticket prices, and history",
+        caption: "Detailed destination guide",
+      },
+    ],
   },
   {
     number: "03",
@@ -62,6 +97,23 @@ const projects = [
     repo: "https://github.com/Mateeoow/salary-manager",
     live: "https://salary-manager-ebon.vercel.app",
     visual: "finance",
+    images: [
+      {
+        src: "/projects/salary-manager/01-overview.png",
+        alt: "Salary Manager overview dashboard with salary, deductions, and balance cards",
+        caption: "Personal-finance overview",
+      },
+      {
+        src: "/projects/salary-manager/02-salary-history.png",
+        alt: "Salary Manager salary-history screen",
+        caption: "Salary history and paycheck records",
+      },
+      {
+        src: "/projects/salary-manager/03-categories.png",
+        alt: "Salary Manager custom categories screen",
+        caption: "Custom expense categories",
+      },
+    ],
   },
   {
     number: "04",
@@ -71,6 +123,23 @@ const projects = [
     tags: ["Flutter", "Dart", "Mobile UI"],
     repo: "https://github.com/Mateeoow/sushi_bae",
     visual: "sushi",
+    images: [
+      {
+        src: "/projects/sushi-bae/01-order-form.png",
+        alt: "Sushi Bae order form with flavor, quantity, and customer details",
+        caption: "Customer ordering flow",
+      },
+      {
+        src: "/projects/sushi-bae/02-customer-receipt.png",
+        alt: "Sushi Bae customer order receipt",
+        caption: "Customer-facing order receipt",
+      },
+      {
+        src: "/projects/sushi-bae/03-kitchen-copy.png",
+        alt: "Sushi Bae kitchen copy with order and tray details",
+        caption: "Kitchen-ready order summary",
+      },
+    ],
   },
   {
     number: "05",
@@ -80,6 +149,23 @@ const projects = [
     tags: ["JavaScript", "HTML", "CSS"],
     repo: "https://github.com/Mateeoow/Tetris",
     visual: "tetris",
+    images: [
+      {
+        src: "/projects/tetris/02-main-menu.png",
+        alt: "Neon Stack Tetris main menu with solo and versus modes",
+        caption: "Game mode and speed selection",
+      },
+      {
+        src: "/projects/tetris/01-versus-match.png",
+        alt: "Neon Stack Tetris two-player versus match",
+        caption: "Two-player versus gameplay",
+      },
+      {
+        src: "/projects/tetris/03-winner-screen.png",
+        alt: "Neon Stack Tetris winner screen showing Player 1",
+        caption: "Match result and replay options",
+      },
+    ],
   },
 ];
 
@@ -214,7 +300,29 @@ export function Portfolio() {
   const [query, setQuery] = useState("");
   const [copied, setCopied] = useState(false);
   const [easterEgg, setEasterEgg] = useState(false);
+  const [gallery, setGallery] = useState<{
+    projectIndex: number;
+    imageIndex: number;
+  } | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const galleryDialogRef = useRef<HTMLDivElement>(null);
+  const galleryCloseRef = useRef<HTMLButtonElement>(null);
+  const galleryTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const touchOriginRef = useRef<{ x: number; y: number } | null>(null);
+
+  const changeGalleryImage = useCallback((direction: -1 | 1) => {
+    setGallery((current) => {
+      if (!current) return current;
+
+      const imageCount = projects[current.projectIndex].images.length;
+      return {
+        ...current,
+        imageIndex: (current.imageIndex + direction + imageCount) % imageCount,
+      };
+    });
+  }, []);
+
+  const galleryProjectIndex = gallery?.projectIndex;
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -294,6 +402,67 @@ export function Portfolio() {
     };
   }, [commandOpen]);
 
+  useEffect(() => {
+    if (galleryProjectIndex === undefined) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const trigger = galleryTriggerRef.current;
+    const focusFrame = window.requestAnimationFrame(() => {
+      galleryCloseRef.current?.focus();
+    });
+
+    document.body.style.overflow = "hidden";
+
+    const handleGalleryKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setGallery(null);
+        return;
+      }
+
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        changeGalleryImage(-1);
+        return;
+      }
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        changeGalleryImage(1);
+        return;
+      }
+
+      if (event.key !== "Tab" || !galleryDialogRef.current) return;
+
+      const focusableElements = Array.from(
+        galleryDialogRef.current.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])',
+        ),
+      );
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements.at(-1);
+
+      if (!firstElement || !lastElement) return;
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    window.addEventListener("keydown", handleGalleryKeyDown);
+
+    return () => {
+      window.cancelAnimationFrame(focusFrame);
+      window.removeEventListener("keydown", handleGalleryKeyDown);
+      document.body.style.overflow = previousOverflow;
+      window.requestAnimationFrame(() => trigger?.focus());
+    };
+  }, [changeGalleryImage, galleryProjectIndex]);
+
   const commands = useMemo(
     () => [
       ...navItems.map((item) => ({
@@ -327,6 +496,12 @@ export function Portfolio() {
   const filteredCommands = commands.filter((command) =>
     command.label.toLowerCase().includes(query.toLowerCase()),
   );
+
+  const activeGalleryProject = gallery ? projects[gallery.projectIndex] : null;
+  const activeGalleryImage =
+    gallery && activeGalleryProject
+      ? activeGalleryProject.images[gallery.imageIndex]
+      : null;
 
   const toggleTheme = () => {
     const nextTheme = theme === "dark" ? "light" : "dark";
@@ -501,7 +676,7 @@ export function Portfolio() {
           </div>
 
           <div className="projects-list">
-            {projects.map((project) => (
+            {projects.map((project, projectIndex) => (
               <article className="project-card" key={project.title} data-reveal>
                 <div className="project-copy">
                   <span className="project-number">/{project.number}</span>
@@ -513,6 +688,19 @@ export function Portfolio() {
                     ))}
                   </div>
                   <div className="project-links">
+                    <button
+                      className="project-gallery-button"
+                      type="button"
+                      aria-haspopup="dialog"
+                      aria-label={`View ${project.title} project gallery`}
+                      onClick={(event) => {
+                        galleryTriggerRef.current = event.currentTarget;
+                        setGallery({ projectIndex, imageIndex: 0 });
+                      }}
+                    >
+                      <Images size={16} /> Gallery
+                      <span>{String(project.images.length).padStart(2, "0")}</span>
+                    </button>
                     <a href={project.repo} target="_blank" rel="noreferrer">
                       <Code2 size={16} /> Source <ArrowUpRight size={14} />
                     </a>
@@ -810,6 +998,117 @@ export function Portfolio() {
         <span>Designed & built in Manila</span>
         <a href="#top">Back to top ↑</a>
       </footer>
+
+      {gallery && activeGalleryProject && activeGalleryImage && (
+        <div
+          className="gallery-backdrop"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.currentTarget === event.target) setGallery(null);
+          }}
+        >
+          <div
+            className="gallery-dialog"
+            ref={galleryDialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="gallery-title"
+            aria-describedby="gallery-caption"
+          >
+            <div className="gallery-header">
+              <div>
+                <span>PROJECT GALLERY / {activeGalleryProject.number}</span>
+                <h2 id="gallery-title">{activeGalleryProject.title}</h2>
+              </div>
+              <button
+                className="gallery-close"
+                ref={galleryCloseRef}
+                type="button"
+                onClick={() => setGallery(null)}
+                aria-label={`Close ${activeGalleryProject.title} gallery`}
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <div
+              className="gallery-stage"
+              onTouchStart={(event) => {
+                const touch = event.touches[0];
+                touchOriginRef.current = { x: touch.clientX, y: touch.clientY };
+              }}
+              onTouchEnd={(event) => {
+                const origin = touchOriginRef.current;
+                const touch = event.changedTouches[0];
+                touchOriginRef.current = null;
+
+                if (!origin || !touch) return;
+
+                const deltaX = touch.clientX - origin.x;
+                const deltaY = touch.clientY - origin.y;
+                if (Math.abs(deltaX) > 52 && Math.abs(deltaX) > Math.abs(deltaY)) {
+                  changeGalleryImage(deltaX > 0 ? -1 : 1);
+                }
+              }}
+            >
+              <div className="gallery-image" key={activeGalleryImage.src}>
+                <Image
+                  src={activeGalleryImage.src}
+                  alt={activeGalleryImage.alt}
+                  fill
+                  sizes="(max-width: 620px) calc(100vw - 1rem), (max-width: 1200px) calc(100vw - 4rem), 1120px"
+                />
+              </div>
+              <button
+                className="gallery-nav gallery-nav-previous"
+                type="button"
+                onClick={() => changeGalleryImage(-1)}
+                aria-label="Show previous project image"
+              >
+                <ArrowDown size={20} />
+              </button>
+              <button
+                className="gallery-nav gallery-nav-next"
+                type="button"
+                onClick={() => changeGalleryImage(1)}
+                aria-label="Show next project image"
+              >
+                <ArrowDown size={20} />
+              </button>
+            </div>
+
+            <div className="gallery-footer">
+              <div className="gallery-caption" id="gallery-caption" aria-live="polite">
+                <span>
+                  {String(gallery.imageIndex + 1).padStart(2, "0")} /{" "}
+                  {String(activeGalleryProject.images.length).padStart(2, "0")}
+                </span>
+                <p>{activeGalleryImage.caption}</p>
+              </div>
+              <div className="gallery-thumbnails" aria-label="Choose a project image">
+                {activeGalleryProject.images.map((image, imageIndex) => (
+                  <button
+                    className={imageIndex === gallery.imageIndex ? "is-active" : ""}
+                    type="button"
+                    key={image.src}
+                    aria-label={`Show image ${imageIndex + 1}: ${image.caption}`}
+                    aria-pressed={imageIndex === gallery.imageIndex}
+                    onClick={() =>
+                      setGallery((current) =>
+                        current ? { ...current, imageIndex } : current,
+                      )
+                    }
+                  >
+                    <Image src={image.src} alt="" fill sizes="72px" />
+                    <span>{String(imageIndex + 1).padStart(2, "0")}</span>
+                  </button>
+                ))}
+              </div>
+              <span className="gallery-hint">Swipe or use arrow keys</span>
+            </div>
+          </div>
+        </div>
+      )}
 
       {commandOpen && (
         <div
