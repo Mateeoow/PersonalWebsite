@@ -1351,6 +1351,10 @@ main {
   aspect-ratio: 3 / 2;
 }
 
+.moment-card-wide .moment-media {
+  aspect-ratio: 16 / 9;
+}
+
 .moment-media img {
   width: 100%;
   height: 100%;

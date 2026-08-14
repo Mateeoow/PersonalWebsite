@@ -930,6 +930,23 @@ export function Portfolio() {
                   <p>Champion</p>
                 </figcaption>
               </figure>
+              <figure className="moment-card moment-card-wide">
+                <span className="moment-index">04</span>
+                <div className="moment-media">
+                  <Image
+                    src="/affiliations/devfest-manila.png"
+                    alt="DevFest Manila community group photo with attendees and organizers"
+                    width={1280}
+                    height={719}
+                    sizes="200px"
+                  />
+                </div>
+                <figcaption>
+                  <span>Developer community</span>
+                  <strong>DevFest Manila</strong>
+                  <p>Community event</p>
+                </figcaption>
+              </figure>
             </div>
           </div>
 
