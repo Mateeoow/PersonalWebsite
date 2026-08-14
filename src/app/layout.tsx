@@ -16,6 +16,17 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Martin Gayem" }],
   creator: "Martin Gayem",
+  icons: {
+    icon: [
+      {
+        url: "/martin-gayem.png",
+        type: "image/png",
+        sizes: "600x600",
+      },
+    ],
+    shortcut: "/martin-gayem.png",
+    apple: "/martin-gayem.png",
+  },
   openGraph: {
     title: "Martin Gayem — Portfolio",
     description:
