@@ -871,12 +871,16 @@ export function Portfolio() {
 
           <div className="campus-moments" data-reveal>
             <div className="campus-moments-copy">
-              <span>Selected campus archive</span>
-              <h3>Work, events, and milestones beyond the classroom.</h3>
-              <p>Original moments from my senior-high involvement and academic journey.</p>
+              <span>Beyond the classroom</span>
+              <h3>Moments that taught me how to lead, support, and compete.</h3>
+              <p>
+                A small record of the events, service, and academic challenges that
+                shaped how I work with people.
+              </p>
             </div>
             <div className="moment-grid">
               <figure className="moment-card">
+                <span className="moment-index">01</span>
                 <div className="moment-media">
                   <Image
                     src="/affiliations/tvl-tle-month-opening.jpg"
@@ -886,9 +890,14 @@ export function Portfolio() {
                     sizes="200px"
                   />
                 </div>
-                <figcaption><span>01</span> TVL/TLE Month opening · Emcee</figcaption>
+                <figcaption>
+                  <span>Event hosting</span>
+                  <strong>TVL/TLE Month opening</strong>
+                  <p>Emcee</p>
+                </figcaption>
               </figure>
               <figure className="moment-card">
+                <span className="moment-index">02</span>
                 <div className="moment-media">
                   <Image
                     src="/affiliations/sslg-election.jpg"
@@ -898,9 +907,14 @@ export function Portfolio() {
                     sizes="200px"
                   />
                 </div>
-                <figcaption><span>02</span> SSLG election · RMMO support</figcaption>
+                <figcaption>
+                  <span>Student service</span>
+                  <strong>SSLG election</strong>
+                  <p>RMMO support</p>
+                </figcaption>
               </figure>
               <figure className="moment-card moment-card-square">
+                <span className="moment-index">03</span>
                 <div className="moment-media">
                   <Image
                     src="/affiliations/science-quiz-bee-champion.png"
@@ -910,7 +924,11 @@ export function Portfolio() {
                     sizes="200px"
                   />
                 </div>
-                <figcaption><span>03</span> Science Quiz Bee · Champion</figcaption>
+                <figcaption>
+                  <span>Academic milestone</span>
+                  <strong>Science Quiz Bee</strong>
+                  <p>Champion</p>
+                </figcaption>
               </figure>
             </div>
           </div>
