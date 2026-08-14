@@ -185,11 +185,13 @@ button {
   transition: right 240ms var(--ease);
 }
 
-.desktop-nav a:hover {
+.desktop-nav a:hover,
+.desktop-nav a.is-active {
   color: var(--text);
 }
 
-.desktop-nav a:hover::after {
+.desktop-nav a:hover::after,
+.desktop-nav a.is-active::after {
   right: 0;
 }
 
@@ -260,11 +262,20 @@ button {
 }
 
 .mobile-nav a {
+  position: relative;
   display: flex;
   gap: 0.75rem;
   padding: 0.85rem 0.5rem;
   border-bottom: 1px solid var(--line);
+  color: var(--muted);
   font-weight: 700;
+  transition: color 180ms ease, background 180ms ease, padding 220ms var(--ease);
+}
+
+.mobile-nav a.is-active {
+  padding-inline: 0.8rem;
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+  color: var(--text);
 }
 
 .mobile-nav a:last-child {

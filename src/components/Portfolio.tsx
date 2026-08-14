@@ -300,6 +300,7 @@ export function Portfolio() {
   const [query, setQuery] = useState("");
   const [copied, setCopied] = useState(false);
   const [easterEgg, setEasterEgg] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
   const [gallery, setGallery] = useState<{
     projectIndex: number;
     imageIndex: number;
@@ -349,6 +350,56 @@ export function Portfolio() {
 
     elements.forEach((element) => observer.observe(element));
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    let animationFrame = 0;
+
+    const updateActiveSection = () => {
+      animationFrame = 0;
+      const activationLine = window.innerHeight * 0.35;
+      let nextSection = "";
+
+      for (const item of navItems) {
+        const section = document.querySelector<HTMLElement>(item.href);
+        if (!section) continue;
+
+        const bounds = section.getBoundingClientRect();
+        if (bounds.top <= activationLine && bounds.bottom > activationLine) {
+          nextSection = item.href.slice(1);
+          break;
+        }
+      }
+
+      const atPageEnd =
+        window.scrollY + window.innerHeight >=
+        document.documentElement.scrollHeight - 4;
+
+      if (atPageEnd) {
+        nextSection = navItems.at(-1)?.href.slice(1) ?? "";
+      }
+
+      setActiveSection((current) =>
+        current === nextSection ? current : nextSection,
+      );
+    };
+
+    const scheduleUpdate = () => {
+      if (animationFrame) return;
+      animationFrame = window.requestAnimationFrame(updateActiveSection);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    window.addEventListener("hashchange", scheduleUpdate);
+
+    return () => {
+      if (animationFrame) window.cancelAnimationFrame(animationFrame);
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("hashchange", scheduleUpdate);
+    };
   }, []);
 
   useEffect(() => {
@@ -529,12 +580,20 @@ export function Portfolio() {
         </a>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
-          {navItems.map((item) => (
-            <a href={item.href} key={item.href}>
-              <span>{item.number}</span>
-              {item.label}
-            </a>
-          ))}
+          {navItems.map((item) => {
+            const isActive = activeSection === item.href.slice(1);
+            return (
+              <a
+                className={isActive ? "is-active" : undefined}
+                href={item.href}
+                key={item.href}
+                aria-current={isActive ? "location" : undefined}
+              >
+                <span>{item.number}</span>
+                {item.label}
+              </a>
+            );
+          })}
         </nav>
 
         <div className="header-actions">
@@ -573,12 +632,21 @@ export function Portfolio() {
 
       {menuOpen && (
         <nav className="mobile-nav" aria-label="Mobile navigation">
-          {navItems.map((item) => (
-            <a href={item.href} key={item.href} onClick={() => setMenuOpen(false)}>
-              <span>{item.number}</span>
-              {item.label}
-            </a>
-          ))}
+          {navItems.map((item) => {
+            const isActive = activeSection === item.href.slice(1);
+            return (
+              <a
+                className={isActive ? "is-active" : undefined}
+                href={item.href}
+                key={item.href}
+                aria-current={isActive ? "location" : undefined}
+                onClick={() => setMenuOpen(false)}
+              >
+                <span>{item.number}</span>
+                {item.label}
+              </a>
+            );
+          })}
         </nav>
       )}
 
