@@ -110,14 +110,28 @@ const skillGroups = [
 
 const recognition = [
   {
+    year: "Scholarship",
+    title: "CHED Merit Scholarship Program (CMSP) Scholar",
+    detail: "Commission on Higher Education",
+    logo: "/affiliations/ched-seal.png",
+    logoAlt: "Commission on Higher Education seal",
+    logoClass: "logo-contain",
+  },
+  {
     year: "SHS",
     title: "With Highest Honors",
     detail: "Manuel A. Roxas High School",
+    logo: "/affiliations/manuel-roxas-high-school.png",
+    logoAlt: "Manuel A. Roxas High School logo",
+    logoClass: "logo-roxas",
   },
   {
     year: "College",
     title: "Consistent Dean’s Lister",
     detail: "Pamantasan ng Lungsod ng Maynila",
+    logo: "/affiliations/plm-seal.png",
+    logoAlt: "Pamantasan ng Lungsod ng Maynila seal",
+    logoClass: "logo-contain",
   },
   {
     year: "Academic",
@@ -554,7 +568,14 @@ export function Portfolio() {
           </div>
 
           <article className="education-card" data-reveal>
-            <div className="education-mark" aria-hidden="true">PLM</div>
+            <div className="education-mark">
+              <Image
+                src="/affiliations/plm-seal.png"
+                alt="Pamantasan ng Lungsod ng Maynila seal"
+                fill
+                sizes="(max-width: 620px) 84px, (max-width: 850px) 104px, 140px"
+              />
+            </div>
             <div className="education-main">
               <span>2025 — Present</span>
               <h3>Pamantasan ng Lungsod ng Maynila</h3>
@@ -579,23 +600,57 @@ export function Portfolio() {
           <div className="recognition-grid">
             {recognition.map((item) => (
               <article className="recognition-card" key={item.title} data-reveal>
-                <span>{item.year}</span>
-                <h3>{item.title}</h3>
-                <p>{item.detail}</p>
+                <div className="recognition-card-top">
+                  <span>{item.year}</span>
+                  {item.logo && (
+                    <div className={`recognition-logo ${item.logoClass ?? ""}`}>
+                      <Image
+                        src={item.logo}
+                        alt={item.logoAlt ?? ""}
+                        fill
+                        sizes="68px"
+                      />
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.detail}</p>
+                </div>
               </article>
             ))}
           </div>
 
           <div className="involvement-list" data-reveal>
             <article>
-              <span className="involvement-year">2025–2026</span>
+              <div className="involvement-meta">
+                <span className="involvement-year">2025–2026</span>
+                <div className="involvement-logo logo-contain">
+                  <Image
+                    src="/affiliations/gdgoc-plm.png"
+                    alt="Google Developer Groups on Campus PLM logo"
+                    fill
+                    sizes="76px"
+                  />
+                </div>
+              </div>
               <div>
                 <h3>Google Developer Groups on Campus</h3>
                 <p>Creatives Committee · First-year member</p>
               </div>
             </article>
             <article>
-              <span className="involvement-year">Senior High</span>
+              <div className="involvement-meta">
+                <span className="involvement-year">Senior High</span>
+                <div className="involvement-logo logo-contain">
+                  <Image
+                    src="/affiliations/rmmo.png"
+                    alt="Roxasian Moments Multimedia Organization logo"
+                    fill
+                    sizes="76px"
+                  />
+                </div>
+              </div>
               <div>
                 <h3>Roxasian Moments Multimedia Organization</h3>
                 <p>
@@ -605,7 +660,17 @@ export function Portfolio() {
               </div>
             </article>
             <article>
-              <span className="involvement-year">School events</span>
+              <div className="involvement-meta">
+                <span className="involvement-year">School events</span>
+                <div className="involvement-logo logo-roxas">
+                  <Image
+                    src="/affiliations/manuel-roxas-high-school.png"
+                    alt="Manuel A. Roxas High School logo"
+                    fill
+                    sizes="76px"
+                  />
+                </div>
+              </div>
               <div>
                 <h3>Creative and event support</h3>
                 <p>
@@ -614,6 +679,52 @@ export function Portfolio() {
                 </p>
               </div>
             </article>
+          </div>
+
+          <div className="campus-moments" data-reveal>
+            <div className="campus-moments-copy">
+              <span>Selected campus archive</span>
+              <h3>Work, events, and milestones beyond the classroom.</h3>
+              <p>Original moments from my senior-high involvement and academic journey.</p>
+            </div>
+            <div className="moment-grid">
+              <figure className="moment-card">
+                <div className="moment-media">
+                  <Image
+                    src="/affiliations/tvl-tle-month-opening.jpg"
+                    alt="Martin Gayem with fellow students at the TVL/TLE Month opening"
+                    width={200}
+                    height={133}
+                    sizes="200px"
+                  />
+                </div>
+                <figcaption><span>01</span> TVL/TLE Month opening · Emcee</figcaption>
+              </figure>
+              <figure className="moment-card">
+                <div className="moment-media">
+                  <Image
+                    src="/affiliations/sslg-election.jpg"
+                    alt="Martin Gayem supporting an SSLG election activity"
+                    width={200}
+                    height={133}
+                    sizes="200px"
+                  />
+                </div>
+                <figcaption><span>02</span> SSLG election · RMMO support</figcaption>
+              </figure>
+              <figure className="moment-card moment-card-square">
+                <div className="moment-media">
+                  <Image
+                    src="/affiliations/science-quiz-bee-champion.png"
+                    alt="Science Quiz Bee champion recognition featuring Martin Gayem"
+                    width={200}
+                    height={200}
+                    sizes="200px"
+                  />
+                </div>
+                <figcaption><span>03</span> Science Quiz Bee · Champion</figcaption>
+              </figure>
+            </div>
           </div>
 
           <div className="activity-strip" data-reveal>

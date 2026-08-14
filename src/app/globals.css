@@ -1055,13 +1055,15 @@ main {
   height: 140px;
   display: grid;
   place-items: center;
+  overflow: hidden;
   border: 1px solid var(--line-strong);
   border-radius: 50%;
-  color: var(--accent);
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: 2rem;
-  letter-spacing: -0.06em;
+  background: color-mix(in srgb, var(--bg-elevated) 86%, transparent);
+}
+
+.education-mark img {
+  object-fit: contain;
+  padding: 0.58rem;
 }
 
 .education-main {
@@ -1106,7 +1108,7 @@ main {
 
 .recognition-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
 
@@ -1127,12 +1129,49 @@ main {
   transform: translateY(-5px);
 }
 
-.recognition-card > span {
+.recognition-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
   margin-bottom: auto;
+}
+
+.recognition-card-top > span {
   color: var(--accent);
   font-family: var(--font-mono);
   font-size: 0.62rem;
   text-transform: uppercase;
+}
+
+.recognition-logo,
+.involvement-logo {
+  position: relative;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  background: #f8f7f2;
+}
+
+.recognition-logo {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+}
+
+.recognition-logo img,
+.involvement-logo img {
+  object-fit: cover;
+}
+
+.logo-contain img {
+  object-fit: contain;
+  padding: 0.24rem;
+}
+
+.logo-roxas img {
+  object-fit: cover;
+  transform: scale(1.18);
 }
 
 .recognition-card h3 {
@@ -1161,6 +1200,19 @@ main {
   border-top: 1px solid var(--line);
 }
 
+.involvement-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.involvement-logo {
+  width: 76px;
+  height: 76px;
+  border-radius: 18px;
+}
+
 .involvement-year {
   color: var(--accent);
   font-family: var(--font-mono);
@@ -1179,6 +1231,93 @@ main {
   margin: 0.6rem 0 0;
   color: var(--muted);
   line-height: 1.7;
+}
+
+.campus-moments {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) auto;
+  align-items: end;
+  gap: clamp(2rem, 5vw, 5rem);
+  margin-top: clamp(3rem, 6vw, 5rem);
+  padding: clamp(1.5rem, 3vw, 2.3rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 5%, transparent), transparent 48%),
+    var(--surface);
+}
+
+.campus-moments-copy {
+  max-width: 420px;
+}
+
+.campus-moments-copy > span {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.campus-moments-copy h3 {
+  margin: 0.85rem 0 0;
+  font-size: clamp(1.45rem, 2.7vw, 2.45rem);
+  letter-spacing: -0.045em;
+  line-height: 1.06;
+}
+
+.campus-moments-copy p {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+.moment-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  align-items: end;
+  gap: 0.8rem;
+}
+
+.moment-card {
+  width: 200px;
+  margin: 0;
+}
+
+.moment-media {
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--bg-elevated);
+}
+
+.moment-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: saturate(0.82) contrast(1.03);
+  transition: filter 240ms ease, transform 420ms var(--ease);
+}
+
+.moment-card:hover .moment-media img {
+  filter: saturate(1) contrast(1.02);
+  transform: scale(1.025);
+}
+
+.moment-card figcaption {
+  display: grid;
+  gap: 0.3rem;
+  margin-top: 0.7rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.moment-card figcaption span {
+  color: var(--accent);
 }
 
 .activity-strip {
@@ -1749,6 +1888,11 @@ footer a:hover {
     grid-column: 2;
   }
 
+  .campus-moments {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
   .github-panel {
     grid-template-columns: 1fr;
   }
@@ -1875,6 +2019,35 @@ footer a:hover {
   .activity-strip {
     grid-template-columns: 1fr;
     gap: 0.8rem;
+  }
+
+  .involvement-meta {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .involvement-logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+  }
+
+  .campus-moments {
+    padding: 1.2rem;
+  }
+
+  .moment-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .moment-card {
+    width: 100%;
+  }
+
+  .moment-card-square {
+    width: min(100%, 200px);
   }
 
   .github-panel {
