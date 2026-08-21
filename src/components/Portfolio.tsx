@@ -37,33 +37,6 @@ const gmailComposeUrl =
 const projects = [
   {
     number: "01",
-    title: "Noble 3D Chess",
-    description:
-      "A fully playable 3D chess game with an interactive board and a standalone rules engine, built as a complete solo project.",
-    tags: ["Next.js", "TypeScript", "Three.js"],
-    repo: "https://github.com/Mateeoow/3D-Chess-Game",
-    live: "https://3d-chess-game-alpha.vercel.app",
-    visual: "chess",
-    images: [
-      {
-        src: "/projects/noble-3d-chess/01-starting-board.png",
-        alt: "Noble 3D Chess opening board with play modes and player panels",
-        caption: "Opening board and game controls",
-      },
-      {
-        src: "/projects/noble-3d-chess/02-active-match.png",
-        alt: "Noble 3D Chess match in progress with move history",
-        caption: "Active match with move history",
-      },
-      {
-        src: "/projects/noble-3d-chess/03-game-result.png",
-        alt: "Noble 3D Chess game-complete screen showing the winning player",
-        caption: "Game result and rematch options",
-      },
-    ],
-  },
-  {
-    number: "02",
     title: "InTravel",
     description:
       "An offline-ready travel dashboard packaged as a Flutter Android app, with maps, trip planning, saved places, and dark mode.",
@@ -89,7 +62,7 @@ const projects = [
     ],
   },
   {
-    number: "03",
+    number: "02",
     title: "Salary Manager",
     description:
       "A personal-finance dashboard for tracking salary, deductions, savings, and custom categories with persistent cloud-backed data.",
@@ -116,7 +89,7 @@ const projects = [
     ],
   },
   {
-    number: "04",
+    number: "03",
     title: "Sushi Bae",
     description:
       "A Flutter mobile application project exploring cross-platform interface development, reusable screens, and app structure.",
@@ -142,7 +115,7 @@ const projects = [
     ],
   },
   {
-    number: "05",
+    number: "04",
     title: "Tetris",
     description:
       "A compact browser recreation of the classic falling-block puzzle, created as a hands-on JavaScript game project.",
@@ -221,17 +194,6 @@ const recognition = [
 ];
 
 function ProjectVisual({ type }: { type: string }) {
-  if (type === "chess") {
-    return (
-      <div className="project-visual chess-visual" aria-hidden="true">
-        {Array.from({ length: 25 }, (_, index) => (
-          <span key={index} className={index % 2 === Math.floor(index / 5) % 2 ? "lit" : ""} />
-        ))}
-        <b>♞</b>
-      </div>
-    );
-  }
-
   if (type === "travel") {
     return (
       <div className="project-visual travel-visual" aria-hidden="true">

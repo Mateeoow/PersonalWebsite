@@ -802,38 +802,6 @@ main {
   border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
 }
 
-.chess-visual {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  padding: 1.5rem;
-  transform: perspective(700px) rotateX(10deg) rotateZ(-3deg);
-}
-
-.project-card:hover .chess-visual {
-  transform: perspective(700px) rotateX(5deg) rotateZ(0deg) translateY(-5px);
-}
-
-.chess-visual span {
-  border: 1px solid var(--line);
-  background: var(--surface);
-}
-
-.chess-visual span.lit {
-  background: color-mix(in srgb, var(--accent) 22%, var(--surface));
-}
-
-.chess-visual b {
-  position: absolute;
-  left: 52%;
-  top: 45%;
-  color: var(--accent);
-  font-size: clamp(4rem, 7vw, 6.8rem);
-  line-height: 1;
-  transform: translate(-50%, -50%) rotate(3deg);
-  filter: drop-shadow(0 14px 12px var(--shadow));
-}
-
 .travel-visual {
   background:
     radial-gradient(circle at 18% 68%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 18%),
