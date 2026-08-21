@@ -125,18 +125,18 @@ const projects = [
     images: [
       {
         src: "/projects/tetris/02-main-menu.png",
-        alt: "Neon Stack Tetris main menu with solo and versus modes",
-        caption: "Game mode and speed selection",
+        alt: "Stack Tetris main menu with solo, versus, and drop-speed controls",
+        caption: "Solo and versus game selection",
       },
       {
         src: "/projects/tetris/01-versus-match.png",
-        alt: "Neon Stack Tetris two-player versus match",
+        alt: "Stack Tetris two-player versus match with side-by-side game boards",
         caption: "Two-player versus gameplay",
       },
       {
         src: "/projects/tetris/03-winner-screen.png",
-        alt: "Neon Stack Tetris winner screen showing Player 1",
-        caption: "Match result and replay options",
+        alt: "Stack Tetris game-over screen showing score, level, and cleared lines",
+        caption: "Game results and replay options",
       },
     ],
   },
