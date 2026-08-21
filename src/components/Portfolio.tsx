@@ -218,16 +218,6 @@ const recognition = [
     logoAlt: "Pamantasan ng Lungsod ng Maynila seal",
     logoClass: "logo-contain",
   },
-  {
-    year: "Academic",
-    title: "Science Quiz Bee Champion",
-    detail: "School-level competition",
-  },
-  {
-    year: "Academic",
-    title: "Math Quiz Bee Champion",
-    detail: "School-level competition",
-  },
 ];
 
 function ProjectVisual({ type }: { type: string }) {
