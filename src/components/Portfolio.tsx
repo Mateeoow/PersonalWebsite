@@ -183,7 +183,6 @@ const skillGroups = [
     skills: [
       "Supabase",
       "Cloudflare",
-      "Google Cloud",
       "Vercel",
       "Netlify",
     ],
