@@ -789,6 +789,7 @@ main {
   justify-self: end;
   width: min(100%, 380px);
   aspect-ratio: 1.35 / 1;
+  margin: 0;
   overflow: hidden;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-md);
@@ -802,155 +803,111 @@ main {
   border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
 }
 
-.travel-visual {
-  background:
-    radial-gradient(circle at 18% 68%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 18%),
-    linear-gradient(135deg, var(--surface), var(--bg));
+.project-preview {
+  display: grid;
+  grid-template-rows: 2.25rem minmax(0, 1fr) 2rem;
+  background: var(--surface);
 }
 
-.travel-visual::before,
-.travel-visual::after {
-  content: "";
-  position: absolute;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-}
-
-.travel-visual::before { width: 260px; height: 260px; left: -80px; top: -70px; }
-.travel-visual::after { width: 220px; height: 220px; right: -45px; bottom: -100px; }
-
-.route {
-  position: absolute;
-  height: 1px;
-  border-top: 1px dashed var(--accent);
-  transform-origin: left;
-}
-
-.route-a { width: 58%; left: 20%; top: 61%; transform: rotate(-24deg); }
-.route-b { width: 44%; left: 42%; top: 43%; transform: rotate(31deg); }
-
-.pin {
-  position: absolute;
-  width: 11px;
-  height: 11px;
-  border: 2px solid var(--accent);
-  border-radius: 50% 50% 50% 0;
-  background: var(--bg);
-  transform: rotate(-45deg);
-  box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 9%, transparent);
-}
-
-.pin-a { left: 20%; top: 61%; }
-.pin-b { left: 56%; top: 44%; }
-.pin-c { right: 14%; top: 57%; }
-
-.travel-visual small,
-.sushi-visual small,
-.tetris-visual small {
-  position: absolute;
-  left: 1.2rem;
-  bottom: 1rem;
-  color: var(--muted);
+.project-preview-bar,
+.project-preview figcaption {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 0.8rem;
+  background: color-mix(in srgb, var(--surface) 92%, var(--bg));
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.52rem;
   letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-.finance-visual {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2rem;
-  background: linear-gradient(145deg, var(--surface), var(--bg));
-}
-
-.finance-visual small {
+.project-preview-bar {
+  border-bottom: 1px solid var(--line);
   color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.08em;
 }
 
-.finance-visual strong {
-  margin-top: 0.35rem;
-  font-family: var(--font-mono);
-  font-size: clamp(1.65rem, 4vw, 2.6rem);
-  letter-spacing: -0.06em;
-}
-
-.bars {
-  height: 95px;
+.project-preview-dots {
   display: flex;
-  align-items: end;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--line);
+  gap: 0.32rem;
 }
 
-.bars span {
-  flex: 1;
-  border-radius: 3px 3px 0 0;
-  background: var(--line-strong);
+.project-preview-dots i {
+  width: 0.38rem;
+  height: 0.38rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--bg-elevated);
 }
 
-.bars span:nth-child(5),
-.bars span:nth-child(6) {
+.project-preview-dots i:first-child {
+  border-color: var(--accent);
   background: var(--accent);
 }
 
-.sushi-visual {
+.project-preview-media {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
   background:
-    radial-gradient(circle at 55% 48%, color-mix(in srgb, var(--accent) 8%, transparent), transparent 32%),
-    var(--surface);
+    linear-gradient(135deg, color-mix(in srgb, var(--surface) 75%, #000), var(--bg));
 }
 
-.plate {
+.project-preview-media::after {
+  content: "";
   position: absolute;
-  width: 70%;
-  height: 58%;
-  left: 15%;
-  top: 20%;
-  border: 1px solid var(--line-strong);
-  border-radius: 50%;
-  background: var(--bg);
-  box-shadow: inset 0 0 0 11px var(--surface-soft);
+  z-index: 2;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, white 6%, transparent);
+  background: linear-gradient(130deg, color-mix(in srgb, white 6%, transparent), transparent 35%);
 }
 
-.roll {
-  position: absolute;
-  width: 58px;
-  height: 58px;
-  border: 8px solid #30342e;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--accent) 0 20%, #e4b86c 22% 38%, #f3ece0 40% 100%);
-  box-shadow: 0 12px 20px var(--shadow);
+.project-preview-image,
+.project-preview-backdrop {
+  object-fit: cover;
+  object-position: center top;
 }
 
-.roll-a { left: 29%; top: 34%; }
-.roll-b { left: 47%; top: 43%; transform: scale(0.88); }
-.roll-c { right: 23%; top: 28%; transform: scale(0.72); }
-
-.tetris-visual {
-  background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 28px 28px;
-  background-color: var(--bg);
+.project-preview-image {
+  transition: transform 550ms var(--ease), filter 300ms ease;
 }
 
-.block {
-  position: absolute;
-  width: 56px;
-  height: 56px;
-  border: 2px solid color-mix(in srgb, var(--bg) 55%, transparent);
-  box-shadow: inset 0 0 0 4px color-mix(in srgb, white 10%, transparent);
+.project-card:hover .project-preview-image {
+  transform: scale(1.025);
+  filter: saturate(1.05);
 }
 
-.b1 { left: 32%; top: 28%; background: var(--accent); }
-.b2 { left: calc(32% + 56px); top: 28%; background: var(--accent); }
-.b3 { left: calc(32% + 56px); top: calc(28% + 56px); background: var(--accent); }
-.b4 { left: calc(32% + 112px); top: calc(28% + 56px); background: color-mix(in srgb, var(--accent) 50%, #6090ff); }
+.project-preview-backdrop {
+  opacity: 0.24;
+  filter: blur(14px) saturate(0.7);
+  transform: scale(1.16);
+}
+
+.project-preview-travel .project-preview-image {
+  z-index: 1;
+  padding: 0.65rem;
+  object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(0 10px 16px color-mix(in srgb, #000 54%, transparent));
+}
+
+.project-card:hover .project-preview-travel .project-preview-image {
+  transform: scale(1.02);
+  filter: drop-shadow(0 12px 18px color-mix(in srgb, #000 60%, transparent));
+}
+
+.project-preview figcaption {
+  border-top: 1px solid var(--line);
+  color: var(--text-soft);
+}
+
+.project-preview figcaption span:last-child {
+  color: var(--accent);
+  font-size: 0.48rem;
+}
 
 .stack-section {
   border-top: 1px solid var(--line);

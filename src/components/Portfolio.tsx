@@ -193,54 +193,43 @@ const recognition = [
   },
 ];
 
-function ProjectVisual({ type }: { type: string }) {
-  if (type === "travel") {
-    return (
-      <div className="project-visual travel-visual" aria-hidden="true">
-        <span className="route route-a" />
-        <span className="route route-b" />
-        <span className="pin pin-a" />
-        <span className="pin pin-b" />
-        <span className="pin pin-c" />
-        <small>MNL — NEXT STOP</small>
-      </div>
-    );
-  }
-
-  if (type === "finance") {
-    return (
-      <div className="project-visual finance-visual" aria-hidden="true">
-        <small>MONTHLY OVERVIEW</small>
-        <strong>₱ 24,800</strong>
-        <div className="bars">
-          {[32, 48, 41, 67, 56, 84, 73].map((height, index) => (
-            <span key={index} style={{ height: `${height}%` }} />
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  if (type === "sushi") {
-    return (
-      <div className="project-visual sushi-visual" aria-hidden="true">
-        <span className="plate" />
-        <span className="roll roll-a" />
-        <span className="roll roll-b" />
-        <span className="roll roll-c" />
-        <small>FLUTTER / MOBILE</small>
-      </div>
-    );
-  }
+function ProjectVisual({ project }: { project: (typeof projects)[number] }) {
+  const preview = project.images[0];
 
   return (
-    <div className="project-visual tetris-visual" aria-hidden="true">
-      <span className="block b1" />
-      <span className="block b2" />
-      <span className="block b3" />
-      <span className="block b4" />
-      <small>LINES / 004</small>
-    </div>
+    <figure className={`project-visual project-preview project-preview-${project.visual}`}>
+      <div className="project-preview-bar" aria-hidden="true">
+        <span className="project-preview-dots">
+          <i />
+          <i />
+          <i />
+        </span>
+        <small>PROJECT PREVIEW</small>
+      </div>
+      <div className="project-preview-media">
+        {project.visual === "travel" && (
+          <Image
+            className="project-preview-backdrop"
+            src={preview.src}
+            alt=""
+            fill
+            sizes="(max-width: 850px) min(100vw - 2.2rem, 470px), 380px"
+            aria-hidden="true"
+          />
+        )}
+        <Image
+          className="project-preview-image"
+          src={preview.src}
+          alt={preview.alt}
+          fill
+          sizes="(max-width: 850px) min(100vw - 2.2rem, 470px), 380px"
+        />
+      </div>
+      <figcaption>
+        <span>{project.title}</span>
+        <span>GALLERY / {String(project.images.length).padStart(2, "0")}</span>
+      </figcaption>
+    </figure>
   );
 }
 
@@ -665,7 +654,7 @@ export function Portfolio() {
             </div>
             <div className="hero-numbers">
               <div>
-                <strong>05</strong>
+                <strong>04</strong>
                 <span>public projects</span>
               </div>
               <div>
@@ -730,7 +719,7 @@ export function Portfolio() {
                     )}
                   </div>
                 </div>
-                <ProjectVisual type={project.visual} />
+                <ProjectVisual project={project} />
               </article>
             ))}
           </div>
