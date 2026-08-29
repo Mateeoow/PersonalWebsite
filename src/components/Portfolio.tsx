@@ -37,6 +37,33 @@ const gmailComposeUrl =
 const projects = [
   {
     number: "01",
+    title: "VerifyPH",
+    description:
+      "A collaborative, evidence-first Philippine news and claim-verification platform that pairs trusted source attribution with Gemini-assisted evidence analysis.",
+    tags: ["Next.js", "Supabase", "Gemini API"],
+    repo: "https://github.com/Mateeoow/verify-ph",
+    live: "https://verify-ph-eight.vercel.app",
+    visual: "verify",
+    images: [
+      {
+        src: "/projects/verify-ph/01-news-feed.png",
+        alt: "VerifyPH news feed showing verified stories from Philippine sources",
+        caption: "Curated Philippine news feed",
+      },
+      {
+        src: "/projects/verify-ph/02-verification-result.png",
+        alt: "VerifyPH verified claim result with evidence summaries and linked sources",
+        caption: "Evidence-backed claim verification",
+      },
+      {
+        src: "/projects/verify-ph/03-information-crisis.png",
+        alt: "VerifyPH information-crisis page explaining why verification matters",
+        caption: "Misinformation awareness and research",
+      },
+    ],
+  },
+  {
+    number: "02",
     title: "InTravel",
     description:
       "An offline-ready travel dashboard packaged as a Flutter Android app, with maps, trip planning, saved places, and dark mode.",
@@ -62,7 +89,7 @@ const projects = [
     ],
   },
   {
-    number: "02",
+    number: "03",
     title: "Salary Manager",
     description:
       "A personal-finance dashboard for tracking salary, deductions, savings, and custom categories with persistent cloud-backed data.",
@@ -89,7 +116,7 @@ const projects = [
     ],
   },
   {
-    number: "03",
+    number: "04",
     title: "Sushi Bae",
     description:
       "A Flutter mobile application project exploring cross-platform interface development, reusable screens, and app structure.",
@@ -115,7 +142,7 @@ const projects = [
     ],
   },
   {
-    number: "04",
+    number: "05",
     title: "Tetris",
     description:
       "A compact browser recreation of the classic falling-block puzzle, created as a hands-on JavaScript game project.",
@@ -156,6 +183,7 @@ const skillGroups = [
     skills: [
       "Supabase",
       "Cloudflare",
+      "cron-job.org",
       "Vercel",
       "Netlify",
     ],
@@ -654,7 +682,7 @@ export function Portfolio() {
             </div>
             <div className="hero-numbers">
               <div>
-                <strong>04</strong>
+                <strong>05</strong>
                 <span>public projects</span>
               </div>
               <div>
