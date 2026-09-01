@@ -10,6 +10,7 @@ import {
   Command,
   Copy,
   ExternalLink,
+  FileText,
   Images,
   Mail,
   MapPin,
@@ -218,6 +219,21 @@ const recognition = [
     logo: "/affiliations/plm-seal.png",
     logoAlt: "Pamantasan ng Lungsod ng Maynila seal",
     logoClass: "logo-contain",
+  },
+];
+
+const credentials = [
+  {
+    issuer: "DataCamp",
+    title: "Introduction to Python",
+    completed: "Sep 01, 2026",
+    duration: "4 hrs",
+    credentialId: "48,799,612",
+    skills: "Python · Programming fundamentals",
+    preview: "/certificates/datacamp-introduction-to-python.png",
+    pdf: "/certificates/datacamp-introduction-to-python.pdf",
+    verificationUrl:
+      "https://www.datacamp.com/completed/statement-of-accomplishment/course/4593fe32585f076facc3397383788a82d058ab16",
   },
 ];
 
@@ -841,6 +857,65 @@ export function Portfolio() {
                   <h3>{item.title}</h3>
                   <p>{item.detail}</p>
                 </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="credentials-block" data-reveal>
+            <div className="credentials-heading">
+              <span>Selected credentials</span>
+              <p>Proof of the foundations behind the work.</p>
+            </div>
+            {credentials.map((credential, index) => (
+              <article className="credential-card" key={credential.title}>
+                <div className="credential-copy">
+                  <span className="credential-index">
+                    {credential.issuer} / {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h3>{credential.title}</h3>
+                  <p className="credential-summary">
+                    Completed through DataCamp as part of my continuing Python and
+                    data-engineering foundation.
+                  </p>
+                  <dl className="credential-details">
+                    <div>
+                      <dt>Completed</dt>
+                      <dd>{credential.completed}</dd>
+                    </div>
+                    <div>
+                      <dt>Length</dt>
+                      <dd>{credential.duration}</dd>
+                    </div>
+                    <div>
+                      <dt>Certificate ID</dt>
+                      <dd>{credential.credentialId}</dd>
+                    </div>
+                  </dl>
+                  <p className="credential-skills">{credential.skills}</p>
+                  <div className="credential-actions">
+                    <a href={credential.verificationUrl} target="_blank" rel="noreferrer">
+                      <ExternalLink size={15} /> View credential <ArrowUpRight size={14} />
+                    </a>
+                    <a href={credential.pdf} target="_blank" rel="noreferrer">
+                      <FileText size={15} /> Open certificate PDF <ArrowUpRight size={14} />
+                    </a>
+                  </div>
+                </div>
+                <a
+                  className="credential-preview"
+                  href={credential.pdf}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open ${credential.title} certificate PDF`}
+                >
+                  <Image
+                    src={credential.preview}
+                    alt={`${credential.issuer} statement of accomplishment for ${credential.title}`}
+                    fill
+                    sizes="(max-width: 850px) min(100vw - 2.2rem, 520px), 420px"
+                  />
+                  <span className="credential-preview-label">Open PDF</span>
+                </a>
               </article>
             ))}
           </div>
