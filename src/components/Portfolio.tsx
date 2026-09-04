@@ -647,12 +647,13 @@ export function Portfolio() {
               <br />
               <span>Gayem.</span>
             </h1>
-            <p className="hero-role">BSCS student · aspiring software engineer</p>
+            <p className="hero-role">BSCS student · aspiring software/data engineer</p>
             <p className="hero-bio">
-              I’m a second-year BSCS student learning through hands-on web, mobile,
-              and interactive projects. I’m interested in software engineering,
-              thoughtful interface design, and turning ideas into practical
-              applications while continually improving my technical skills.
+              I’m a second-year BSCS student building hands-on experience through web
+              development and software projects. I’m interested in software engineering,
+              backend development, and data engineering, with a focus on building
+              practical applications, working with data, and continuously strengthening
+              my technical skills.
             </p>
             <div className="hero-meta">
               <span>

@@ -5,13 +5,14 @@ import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Martin Gayem — BSCS Student & Aspiring Software Engineer",
+  title: "Martin Gayem — BSCS Student & Aspiring Software/Data Engineer",
   description:
-    "The personal portfolio of Martin Gayem, a BS Computer Science student in Manila building practical web, mobile, and interactive projects.",
+    "I’m a second-year BSCS student building hands-on experience through web development and software projects. I’m interested in software engineering, backend development, and data engineering, with a focus on building practical applications, working with data, and continuously strengthening my technical skills.",
   keywords: [
     "Martin Gayem",
     "computer science student",
     "software engineer",
+    "data engineer",
     "web developer",
     "mobile developer",
     "portfolio",
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Martin Gayem — Portfolio",
     description:
-      "BSCS student building practical web, mobile, and interactive projects.",
+      "BSCS student and aspiring software/data engineer building practical applications through web development, backend work, and data engineering.",
     type: "website",
     locale: "en_PH",
   },
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Martin Gayem — Portfolio",
     description:
-      "BSCS student building practical web, mobile, and interactive projects.",
+      "BSCS student and aspiring software/data engineer building practical applications through web development, backend work, and data engineering.",
   },
 };
 
