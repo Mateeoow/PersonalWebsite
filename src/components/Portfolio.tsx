@@ -986,7 +986,7 @@ export function Portfolio() {
                 </div>
               </div>
               <div>
-                <h3>Creative and event support</h3>
+                <h3>Creative and Event Support</h3>
                 <p>
                   Emcee for the TVL/TLE Month opening, facilitator for TechnoQuiz and
                   Art Tech, and support for the 2024 and 2025 SSLG elections.
