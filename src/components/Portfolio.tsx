@@ -940,6 +940,23 @@ export function Portfolio() {
             </article>
             <article>
               <div className="involvement-meta">
+                <span className="involvement-year">2026–Present</span>
+                <div className="involvement-logo logo-contain">
+                  <Image
+                    src="/affiliations/gdgoc-plm.png"
+                    alt="Google Developer Groups on Campus PLM logo"
+                    fill
+                    sizes="76px"
+                  />
+                </div>
+              </div>
+              <div>
+                <h3>Google Developer Groups on Campus</h3>
+                <p>Web Development · Member</p>
+              </div>
+            </article>
+            <article>
+              <div className="involvement-meta">
                 <span className="involvement-year">Senior High</span>
                 <div className="involvement-logo logo-contain">
                   <Image
