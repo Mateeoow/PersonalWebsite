@@ -923,23 +923,6 @@ export function Portfolio() {
           <div className="involvement-list" data-reveal>
             <article>
               <div className="involvement-meta">
-                <span className="involvement-year">2025–2026</span>
-                <div className="involvement-logo logo-contain">
-                  <Image
-                    src="/affiliations/gdgoc-plm.png"
-                    alt="Google Developer Groups on Campus PLM logo"
-                    fill
-                    sizes="76px"
-                  />
-                </div>
-              </div>
-              <div>
-                <h3>Google Developer Groups on Campus</h3>
-                <p>Creatives Committee · First-year member</p>
-              </div>
-            </article>
-            <article>
-              <div className="involvement-meta">
                 <span className="involvement-year">2026–Present</span>
                 <div className="involvement-logo logo-contain">
                   <Image
@@ -952,7 +935,14 @@ export function Portfolio() {
               </div>
               <div>
                 <h3>Google Developer Groups on Campus</h3>
-                <p>Web Development · Member</p>
+                <div className="involvement-role-history">
+                  <span>
+                    <strong>2026–Present</strong> Tech Department - Web Development
+                  </span>
+                  <span>
+                    <strong>2025–2026</strong> Creatives Department - Media and Documentation
+                  </span>
+                </div>
               </div>
             </article>
             <article>
@@ -969,9 +959,17 @@ export function Portfolio() {
               </div>
               <div>
                 <h3>Roxasian Moments Multimedia Organization</h3>
-                <p>
-                  Master of Peace / Protocol Officer · Supported publication work,
-                  team cooperation, and a collaborative environment.
+                <div className="involvement-role-history">
+                  <span>
+                    <strong>2024-2025</strong> - Master of Peace
+                  </span>
+                  <span>
+                    <strong>2023-2024</strong> - Photographer/Videographer
+                  </span>
+                </div>
+                <p className="involvement-detail">
+                  Supported publication work, team cooperation, and a collaborative
+                  environment.
                 </p>
               </div>
             </article>

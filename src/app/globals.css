@@ -1377,11 +1377,40 @@ main {
   letter-spacing: -0.04em;
 }
 
+.involvement-role-history {
+  display: grid;
+  gap: 0.42rem;
+  margin-top: 0.7rem;
+}
+
+.involvement-role-history span {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.55rem;
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.involvement-role-history strong {
+  flex: 0 0 auto;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
 .involvement-list p {
   max-width: 770px;
   margin: 0.6rem 0 0;
   color: var(--muted);
   line-height: 1.7;
+}
+
+.involvement-list p.involvement-detail {
+  margin-top: 1.1rem;
 }
 
 .campus-moments {
