@@ -962,10 +962,37 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.8rem;
   padding: 0.62rem 0;
   border-top: 1px solid var(--line);
   color: var(--text-soft);
   font-size: 0.82rem;
+}
+
+.skill-item {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.72rem;
+}
+
+.skill-icon {
+  display: grid;
+  width: 1.45rem;
+  height: 1.45rem;
+  flex: 0 0 1.45rem;
+  place-items: center;
+  color: var(--accent);
+}
+
+.skill-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.skill-item > span:last-child {
+  overflow-wrap: anywhere;
 }
 
 .skill-group li::after {

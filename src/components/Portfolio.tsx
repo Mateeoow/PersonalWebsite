@@ -6,9 +6,12 @@ import {
   ArrowUpRight,
   BriefcaseBusiness,
   Check,
+  Clock3,
+  Cloud,
   Code2,
   Command,
   Copy,
+  Database,
   ExternalLink,
   FileText,
   Images,
@@ -221,6 +224,34 @@ const recognition = [
     logoClass: "logo-contain",
   },
 ];
+
+const skillIconSources: Record<string, string> = {
+  JavaScript: "https://icon.icepanel.io/Technology/svg/JavaScript.svg",
+  TypeScript: "https://icon.icepanel.io/Technology/svg/TypeScript.svg",
+  Java: "https://icon.icepanel.io/Technology/svg/Java.svg",
+  Python: "https://icon.icepanel.io/Technology/svg/Python.svg",
+  C: "https://icon.icepanel.io/Technology/svg/C.svg",
+  "C++": "https://icon.icepanel.io/Technology/svg/C%2B%2B-%28CPlusPlus%29.svg",
+  HTML: "https://icon.icepanel.io/Technology/svg/HTML5.svg",
+  CSS: "https://icon.icepanel.io/Technology/svg/CSS3.svg",
+  "Next.js": "https://icon.icepanel.io/Technology/svg/Next.js.svg",
+  "Node.js": "https://icon.icepanel.io/Technology/svg/Node.js.svg",
+  "Three.js": "https://icon.icepanel.io/Technology/svg/Three.js.svg",
+  Flutter: "https://icon.icepanel.io/Technology/svg/Flutter.svg",
+  Cloudflare: "https://icon.icepanel.io/Technology/svg/Cloudflare.svg",
+  Vercel: "https://icon.icepanel.io/Technology/svg/Vercel.svg",
+  Git: "https://icon.icepanel.io/Technology/svg/Git.svg",
+  GitHub: "https://icon.icepanel.io/Technology/svg/GitHub.svg",
+  Figma: "https://icon.icepanel.io/Technology/svg/Figma.svg",
+  Canva: "https://icon.icepanel.io/Technology/svg/Canva.svg",
+  Photoshop: "https://icon.icepanel.io/Technology/svg/Adobe-Photoshop.svg",
+};
+
+const fallbackSkillIcons: Record<string, typeof Terminal> = {
+  Supabase: Database,
+  "cron-job.org": Clock3,
+  Netlify: Cloud,
+};
 
 const credentials = [
   {
@@ -647,7 +678,9 @@ export function Portfolio() {
               <br />
               <span>Gayem.</span>
             </h1>
-            <p className="hero-role">BSCS student · aspiring software/data engineer</p>
+            <p className="hero-role">
+              BSCS student · Web Developer Googler at GDGOC · aspiring software/data engineer
+            </p>
             <p className="hero-bio">
               I’m a second-year BSCS student building hands-on experience through web
               development and software projects. I’m interested in software engineering,
@@ -787,9 +820,30 @@ export function Portfolio() {
                   <h3>{group.label}</h3>
                 </div>
                 <ul>
-                  {group.skills.map((skill) => (
-                    <li key={skill}>{skill}</li>
-                  ))}
+                  {group.skills.map((skill) => {
+                    const FallbackIcon = fallbackSkillIcons[skill] ?? Terminal;
+
+                    return (
+                      <li key={skill}>
+                        <span className="skill-item">
+                          <span className="skill-icon" aria-hidden="true">
+                            {skillIconSources[skill] ? (
+                              <Image
+                                src={skillIconSources[skill]}
+                                alt=""
+                                width={20}
+                                height={20}
+                                sizes="20px"
+                              />
+                            ) : (
+                              <FallbackIcon size={16} strokeWidth={1.7} />
+                            )}
+                          </span>
+                          <span>{skill}</span>
+                        </span>
+                      </li>
+                    );
+                  })}
                 </ul>
               </article>
             ))}
