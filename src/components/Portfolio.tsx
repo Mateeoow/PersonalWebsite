@@ -126,6 +126,7 @@ const projects = [
       "A Flutter mobile application project exploring cross-platform interface development, reusable screens, and app structure.",
     tags: ["Flutter", "Dart", "Mobile UI"],
     repo: "https://github.com/Mateeoow/sushi_bae",
+    live: "https://sushi-bae.vercel.app",
     visual: "sushi",
     images: [
       {
@@ -152,6 +153,7 @@ const projects = [
       "A compact browser recreation of the classic falling-block puzzle, created as a hands-on JavaScript game project.",
     tags: ["JavaScript", "HTML", "CSS"],
     repo: "https://github.com/Mateeoow/Tetris",
+    live: "https://stack-one-alpha.vercel.app",
     visual: "tetris",
     images: [
       {
