@@ -1,6 +1,8 @@
 # Martin Gayem — Personal Portfolio
 
-A responsive personal portfolio for Martin Gayem, a BS Computer Science student and aspiring software engineer in Manila, Philippines.
+A responsive personal portfolio for Martin Gayem, a second-year BS Computer Science student and aspiring software and data engineer in Manila, Philippines.
+
+[View the live portfolio](https://mateeoow.vercel.app)
 
 The site presents selected web, mobile, and interactive projects alongside Martin's technical stack, education, recognitions, organization experience, and contact links. Its visual direction combines a minimalist editorial layout with developer-focused details, subtle motion, and an electric-lime accent.
 
