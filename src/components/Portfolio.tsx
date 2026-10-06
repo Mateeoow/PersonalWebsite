@@ -261,14 +261,33 @@ const hackathons = [
     role: "Backend Lead",
     result: "1st Runner-Up",
     repo: "https://github.com/Eunice-13/TULAY",
+    live: "",
+    photos: [
+      {
+        src: "/hackathons/tulay/team-award.png",
+        alt: "Team RYZZA receiving the first runner-up certificate at Build Over Nights",
+        caption: "Team RYZZA · 1st Runner-Up",
+        width: 480,
+        height: 854,
+      },
+      {
+        src: "/hackathons/tulay/award-portrait.png",
+        alt: "Martin Gayem holding the first runner-up certificate beside an AWS sign",
+        caption: "Build Over Nights · AWS",
+        width: 480,
+        height: 640,
+      },
+    ],
   },
   {
     year: "2026",
     event: "HackSocial 2026",
     project: "VerifyPH",
     role: "DBMS & Backend Integration",
+    result: "",
     repo: "https://github.com/Mateeoow/verify-ph",
     live: "https://verify-ph.vercel.app",
+    photos: [],
   },
 ];
 
@@ -987,6 +1006,22 @@ export function Portfolio() {
                       <span aria-hidden="true"> · </span>
                       {hackathon.role}
                     </p>
+                    {hackathon.photos.length > 0 && (
+                      <div className="hackathon-proof" aria-label={`${hackathon.event} photos`}>
+                        {hackathon.photos.map((photo) => (
+                          <figure className="hackathon-photo" key={photo.src}>
+                            <Image
+                              src={photo.src}
+                              alt={photo.alt}
+                              width={photo.width}
+                              height={photo.height}
+                              sizes="(max-width: 620px) 45vw, 360px"
+                            />
+                            <figcaption>{photo.caption}</figcaption>
+                          </figure>
+                        ))}
+                      </div>
+                    )}
                     <div className="hackathon-links">
                       <a href={hackathon.repo} target="_blank" rel="noreferrer">
                         <Code2 size={15} /> Source <ArrowUpRight size={13} />
