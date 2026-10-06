@@ -1183,6 +1183,120 @@ main {
   font-size: 0.78rem;
 }
 
+.hackathon-block {
+  margin-top: clamp(4rem, 8vw, 7rem);
+  border-top: 1px solid var(--line);
+}
+
+.hackathon-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.hackathon-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1.2rem;
+  min-height: 220px;
+  padding: clamp(1.35rem, 2.8vw, 2.2rem);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(145deg, color-mix(in srgb, var(--surface) 82%, transparent), transparent);
+  transition: border-color 220ms ease, transform 280ms var(--ease);
+}
+
+.hackathon-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 60%, var(--line));
+  transform: translateY(-3px);
+}
+
+.hackathon-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+.hackathon-meta > span {
+  font-size: 0.72rem;
+}
+
+.hackathon-meta small {
+  color: var(--muted);
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+}
+
+.hackathon-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.hackathon-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.hackathon-title-row h3 {
+  max-width: 390px;
+  margin: 0;
+  font-size: clamp(1.25rem, 2.2vw, 1.85rem);
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+}
+
+.hackathon-result {
+  flex: 0 0 auto;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 48%, var(--line));
+  border-radius: 999px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hackathon-copy > p {
+  margin: 1rem 0 0;
+  color: var(--text-soft);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.hackathon-copy > p strong {
+  color: var(--text);
+}
+
+.hackathon-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+}
+
+.hackathon-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: inherit;
+  font-size: 0.72rem;
+  font-weight: 720;
+  transition: color 180ms ease;
+}
+
+.hackathon-links a:hover {
+  color: var(--accent);
+}
+
 .credentials-block {
   margin-top: clamp(4rem, 8vw, 7rem);
   border-top: 1px solid var(--line);
@@ -2485,6 +2599,14 @@ footer a:hover {
   .skill-grid,
   .recognition-grid {
     grid-template-columns: 1fr;
+  }
+
+  .hackathon-list {
+    grid-template-columns: 1fr;
+  }
+
+  .hackathon-card {
+    min-height: 200px;
   }
 
   .skill-group {

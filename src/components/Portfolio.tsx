@@ -41,12 +41,38 @@ const gmailComposeUrl =
 const projects = [
   {
     number: "01",
+    title: "TULAY",
+    description:
+      "A healthcare-access hackathon prototype connecting beneficiaries, clinics, doctors, and pharmacies. As Backend Lead, I led the Supabase data model, role-based access, verification workflow, and prescription-to-pharmacy data flow.",
+    tags: ["Next.js", "Supabase", "PostgreSQL"],
+    repo: "https://github.com/Eunice-13/TULAY",
+    visual: "tulay",
+    images: [
+      {
+        src: "/projects/tulay/01-landing.png",
+        alt: "TULAY landing page with patient and medical professional portals",
+        caption: "Patient and provider portal entry",
+      },
+      {
+        src: "/projects/tulay/02-staff-entry.png",
+        alt: "TULAY professional portal with doctor, clinic staff, and pharmacy workspaces",
+        caption: "Role-based professional workspaces",
+      },
+      {
+        src: "/projects/tulay/03-doctor-login.png",
+        alt: "TULAY doctor sign-in screen",
+        caption: "Secure doctor portal access",
+      },
+    ],
+  },
+  {
+    number: "02",
     title: "VerifyPH",
     description:
-      "A collaborative, evidence-first Philippine news and claim-verification platform that pairs trusted source attribution with Gemini-assisted evidence analysis.",
+      "A collaborative Philippine news and claim-verification platform built for HackSocial 2026. I independently handled the DBMS and backend integration, including Supabase setup, scheduled news ingestion, and evidence retrieval.",
     tags: ["Next.js", "Supabase", "Gemini API"],
     repo: "https://github.com/Mateeoow/verify-ph",
-    live: "https://verify-ph-eight.vercel.app",
+    live: "https://verify-ph.vercel.app",
     visual: "verify",
     images: [
       {
@@ -67,7 +93,7 @@ const projects = [
     ],
   },
   {
-    number: "02",
+    number: "03",
     title: "InTravel",
     description:
       "An offline-ready travel dashboard packaged as a Flutter Android app, with maps, trip planning, saved places, and dark mode.",
@@ -93,7 +119,7 @@ const projects = [
     ],
   },
   {
-    number: "03",
+    number: "04",
     title: "Salary Manager",
     description:
       "A personal-finance dashboard for tracking salary, deductions, savings, and custom categories with persistent cloud-backed data.",
@@ -120,7 +146,7 @@ const projects = [
     ],
   },
   {
-    number: "04",
+    number: "05",
     title: "Sushi Bae",
     description:
       "A Flutter mobile application project exploring cross-platform interface development, reusable screens, and app structure.",
@@ -147,7 +173,7 @@ const projects = [
     ],
   },
   {
-    number: "05",
+    number: "06",
     title: "Tetris",
     description:
       "A compact browser recreation of the classic falling-block puzzle, created as a hands-on JavaScript game project.",
@@ -224,6 +250,25 @@ const recognition = [
     logo: "/affiliations/plm-seal.png",
     logoAlt: "Pamantasan ng Lungsod ng Maynila seal",
     logoClass: "logo-contain",
+  },
+];
+
+const hackathons = [
+  {
+    year: "2026",
+    event: "Build Over Nights: Kiro × Quick Hackathon",
+    project: "TULAY",
+    role: "Backend Lead",
+    result: "1st Runner-Up",
+    repo: "https://github.com/Eunice-13/TULAY",
+  },
+  {
+    year: "2026",
+    event: "HackSocial 2026",
+    project: "VerifyPH",
+    role: "DBMS & Backend Integration",
+    repo: "https://github.com/Mateeoow/verify-ph",
+    live: "https://verify-ph.vercel.app",
   },
 ];
 
@@ -734,7 +779,7 @@ export function Portfolio() {
             </div>
             <div className="hero-numbers">
               <div>
-                <strong>05</strong>
+                <strong>06</strong>
                 <span>public projects</span>
               </div>
               <div>
@@ -874,7 +919,7 @@ export function Portfolio() {
               />
             </div>
             <div className="education-main">
-              <span>2025 — Present</span>
+              <span>2025 — 2029</span>
               <h3>Pamantasan ng Lungsod ng Maynila</h3>
               <p>Bachelor of Science in Computer Science</p>
             </div>
@@ -916,6 +961,46 @@ export function Portfolio() {
                 </div>
               </article>
             ))}
+          </div>
+
+          <div className="hackathon-block" data-reveal>
+            <div className="credentials-heading">
+              <span>Hackathon experience</span>
+              <p>Fast-paced team builds with clear technical ownership.</p>
+            </div>
+            <div className="hackathon-list">
+              {hackathons.map((hackathon, index) => (
+                <article className="hackathon-card" key={hackathon.event}>
+                  <div className="hackathon-meta">
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <small>{hackathon.year}</small>
+                  </div>
+                  <div className="hackathon-copy">
+                    <div className="hackathon-title-row">
+                      <h3>{hackathon.event}</h3>
+                      {hackathon.result && (
+                        <span className="hackathon-result">{hackathon.result}</span>
+                      )}
+                    </div>
+                    <p>
+                      <strong>{hackathon.project}</strong>
+                      <span aria-hidden="true"> · </span>
+                      {hackathon.role}
+                    </p>
+                    <div className="hackathon-links">
+                      <a href={hackathon.repo} target="_blank" rel="noreferrer">
+                        <Code2 size={15} /> Source <ArrowUpRight size={13} />
+                      </a>
+                      {hackathon.live && (
+                        <a href={hackathon.live} target="_blank" rel="noreferrer">
+                          <ExternalLink size={15} /> Live demo <ArrowUpRight size={13} />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
 
           <div className="credentials-block" data-reveal>
@@ -978,6 +1063,27 @@ export function Portfolio() {
           </div>
 
           <div className="involvement-list" data-reveal>
+            <article>
+              <div className="involvement-meta">
+                <span className="involvement-year">2026–Present</span>
+                <div className="involvement-logo logo-contain">
+                  <Image
+                    src="/affiliations/aws-sbg-haribon.png"
+                    alt="AWS Student Builder Group Haribon logo"
+                    fill
+                    sizes="76px"
+                  />
+                </div>
+              </div>
+              <div>
+                <h3>AWS Student Builder Group – Haribon</h3>
+                <div className="involvement-role-history">
+                  <span>
+                    <strong>2026–Present</strong> Data Engineering Associate
+                  </span>
+                </div>
+              </div>
+            </article>
             <article>
               <div className="involvement-meta">
                 <span className="involvement-year">2026–Present</span>
@@ -1171,7 +1277,7 @@ export function Portfolio() {
                 <p><b>$</b> focus --current</p>
                 <strong>web · mobile · interactive builds</strong>
                 <p><b>$</b> repos --featured</p>
-                <strong>5 selected projects</strong>
+                <strong>6 selected projects</strong>
                 <p className="terminal-cursor"><b>$</b> <i /></p>
               </div>
             </div>
